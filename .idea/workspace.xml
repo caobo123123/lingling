@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="20548055-c73a-4afb-87ac-0c01e416745d" name="更改" comment="修改一下提交">
+      <change afterPath="$PROJECT_DIR$/.idea/lingling.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/宏/咒术宏/color_ops.ahk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/宏/咒术宏/config.ahk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/宏/咒术宏/gui.ahk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/宏/咒术宏/main.ahk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/宏/咒术宏/咒术.ahk" beforeDir="false" afterPath="$PROJECT_DIR$/宏/咒术宏/咒术.ahk" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "caobo123123"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/caobo123123/lingling.git",
+    "accountId": "d31040f4-92c4-4b46-a93d-1ac47532f619"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2tesiZLtAYuoBn62pmcPmKXpm1x" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "AutoHotkey.gui.executor": "Run",
+    "AutoHotkey.main.executor": "Run",
+    "AutoHotkey.咒术.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/WorkSpace/lingling",
+    "settings.editor.selected.configurable": "language.autohotkey"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WorkSpace\lingling\宏\咒术宏" />
+      <recent name="D:\WorkSpace\lingling" />
+    </key>
+  </component>
+  <component name="RunManager" selected="AutoHotkey.咒术">
+    <configuration name="咒术" type="AhkRunConfiguration" temporary="true">
+      <option name="runner" value="AutoHotkey v2.0.18" />
+      <option name="pathToScript" value="$PROJECT_DIR$/宏/咒术宏/咒术.ahk" />
+      <option name="arguments" value="" />
+      <switches>
+        <switch name="/ErrorStdOut" enabled="true" />
+      </switches>
+      <method v="2" />
+    </configuration>
+    <configuration name="gui" type="AhkRunConfiguration" temporary="true">
+      <option name="runner" value="AutoHotkey v2.0.18" />
+      <option name="pathToScript" value="$PROJECT_DIR$/宏/咒术宏/gui.ahk" />
+      <option name="arguments" value="" />
+      <switches>
+        <switch name="/ErrorStdOut" enabled="true" />
+      </switches>
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="AhkRunConfiguration" temporary="true">
+      <option name="runner" value="AutoHotkey v2.0.18" />
+      <option name="pathToScript" value="$PROJECT_DIR$/宏/咒术宏/main.ahk" />
+      <option name="arguments" value="" />
+      <switches>
+        <switch name="/ErrorStdOut" enabled="true" />
+      </switches>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="AutoHotkey.gui" />
+      <item itemvalue="AutoHotkey.main" />
+      <item itemvalue="AutoHotkey.咒术" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="AutoHotkey.咒术" />
+        <item itemvalue="AutoHotkey.main" />
+        <item itemvalue="AutoHotkey.gui" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="20548055-c73a-4afb-87ac-0c01e416745d" name="更改" comment="" />
+      <created>1740724002909</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740724002909</updated>
+    </task>
+    <task id="LOCAL-00001" summary="修改一下提交">
+      <option name="closed" value="true" />
+      <created>1740724042241</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1740724042241</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1" />
+    <MESSAGE value="修改一下提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改一下提交" />
+  </component>
+</project>
