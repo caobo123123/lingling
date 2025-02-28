@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20548055-c73a-4afb-87ac-0c01e416745d" name="更改" comment="修改一下提交">
-      <change afterPath="$PROJECT_DIR$/.idea/lingling.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/宏/咒术宏/color_ops.ahk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/宏/咒术宏/config.ahk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/宏/咒术宏/gui.ahk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/宏/咒术宏/main.ahk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/宏/咒术宏/咒术.ahk" beforeDir="false" afterPath="$PROJECT_DIR$/宏/咒术宏/咒术.ahk" afterDir="false" />
-    </list>
+    <list default="true" id="20548055-c73a-4afb-87ac-0c01e416745d" name="更改" comment="获取颜色对比  移动窗口 对比结果不变" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740724042241</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="获取颜色对比  移动窗口 对比结果不变">
+      <option name="closed" value="true" />
+      <created>1740730030227</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1740730030227</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,6 +140,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
     <MESSAGE value="修改一下提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改一下提交" />
+    <MESSAGE value="获取颜色对比  移动窗口 对比结果不变" />
+    <option name="LAST_COMMIT_MESSAGE" value="获取颜色对比  移动窗口 对比结果不变" />
   </component>
 </project>
