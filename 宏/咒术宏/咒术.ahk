@@ -1,122 +1,119 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 
-; 目标窗口信息存储
-class TargetWindow {
-    static hwnd := 0
-    static clientX := 0, clientY := 0
-    static width := 0, height := 0
+; 设置全局坐标模式为屏幕坐标系
+CoordMode "Mouse", "Screen"   ; 鼠标相关操作使用屏幕坐标
+CoordMode "Pixel", "Screen"   ; 像素相关操作使用屏幕坐标
+
+; 实时坐标显示（带屏幕坐标系标识）
+coordTip := Gui("+ToolWindow -Caption +AlwaysOnTop")
+coordTip.BackColor := "EEAA99"
+coordTip.SetFont("s10 bold")
+coordText := coordTip.Add("Text", "w240 h30 Center", "屏幕坐标 (X: 0, Y: 0)")
+SetTimer(UpdateCoordTip, 50)
+
+; 主界面增强
+mainGui := Gui()
+mainGui.Title := "屏幕坐标取色器 v2"
+mainGui.SetFont("s10")
+mainGui.Add("Text", "w400", "操作说明：`nF1 - 记录当前屏幕坐标颜色`nF2 - 对比记录点的颜色变化`nF5 - 退出程序")
+resultBox := mainGui.Add("Edit", "w400 h150 ReadOnly")
+mainGui.Show()
+
+; 数据存储升级
+Global colorData := Map(
+    "x", 0,
+    "y", 0,
+    "color", "",
+    "timestamp", 0,
+    "monitor", 0  ; 记录所在显示器
+)
+
+UpdateCoordTip() {
+    MouseGetPos(&x, &y)
+    ; 添加显示器信息
+    monitor := GetMonitorAt(x, y)
+    coordText.Text := Format("屏幕坐标 (X: {}, Y: {})`n显示器 #{}", x, y, monitor)
+    coordTip.Show("NA x" x+20 " y" y+20)
 }
 
-; 创建GUI
-MyGui := Gui()
-MyGui.Title := "窗口颜色检测器"
-MyGui.Add("Text",, "F3: 选择目标窗口`nF1: 记录颜色`nF2: 对比颜色")
-InfoBox := MyGui.Add("Edit", "w400 h150 ReadOnly", "操作提示：")
-MyGui.Show()
-
-; F3：选择目标窗口
-F3:: {
-    MouseGetPos(,, &hoverHwnd)
-    if !WinExist(hoverHwnd) {
-        InfoBox.Value := "无效窗口！"
-        return
+; 新增函数：获取指定坐标的显示器编号
+GetMonitorAt(x, y) {
+    monitors := MonitorGetCount()
+    Loop monitors {
+        MonitorGet(A_Index, &L, &T, &R, &B)
+        if (x >= L && x <= R && y >= T && y <= B) {
+            return A_Index
+        }
     }
-
-    ; 获取窗口客户区位置
-    WinGetClientPos(&x, &y, &w, &h, hoverHwnd)
-    TargetWindow.hwnd := hoverHwnd
-    TargetWindow.clientX := x
-    TargetWindow.clientY := y
-    TargetWindow.width := w
-    TargetWindow.height := h
-
-    InfoBox.Value := Format("
-    (
-    █ 已选择目标窗口
-    █ 客户区尺寸：{}x{}
-    █ 屏幕位置：({}, {})
-    )", w, h, x, y)
+    return 1
 }
 
-; 通用坐标转换函数
-GetWindowColorInfo() {
-    ; 获取屏幕坐标
-    MouseGetPos(&screenX, &screenY)
+ShowMarker(x, y) {
+    ; 优化标记显示（兼容多显示器）
+    markerGui := Gui("+ToolWindow -Caption +AlwaysOnTop")
+    markerGui.BackColor := "FF0000"
+    markerGui.Opt("+E0x20 -DPIScale")
 
-    ; 转换到窗口客户区坐标
-    winX := screenX - TargetWindow.clientX
-    winY := screenY - TargetWindow.clientY
-
-    ; 坐标有效性验证
-    if (winX < 0 || winY < 0 || winX > TargetWindow.width || winY > TargetWindow.height) {
-        return {valid: false}
-    }
-
-    ; 获取颜色
-    color := PixelGetColor(screenX, screenY, "RGB")
-    return {x: winX, y: winY, color: "0x" StrReplace(color, "0x"), valid: true}
+    ; 绘制十字准星
+    markerGui.Add("Text", "x0 y0 w2 h20 BackgroundRed")   ; 垂直
+    markerGui.Add("Text", "x0 y0 w20 h2 BackgroundRed")   ; 水平
+    markerGui.Show("NA x" x-10 " y" y-10)
+    SetTimer(() => markerGui.Destroy(), -500)
 }
-
-; F1：记录颜色
+; 修改时间记录方式
 F1:: {
-    if !TargetWindow.hwnd {
-        InfoBox.Value := "请先按F3选择目标窗口！"
-        return
-    }
+    MouseGetPos(&x, &y)
+    colorData["x"] := x
+    colorData["y"] := y
+    colorData["color"] := PixelGetColor(x, y)
+    colorData["timestamp"] := A_Now  ; 使用标准时间戳
+    colorData["monitor"] := GetMonitorAt(x, y)
 
-    info := GetWindowColorInfo()
-    if !info.valid {
-        InfoBox.Value := Format("坐标超出窗口范围！`n客户区尺寸：{}x{}", TargetWindow.width, TargetWindow.height)
-        return
-    }
-
-    ; 存储首次记录
-    persistent FirstRecord := {x: info.x, y: info.y, color: info.color}
-
-    InfoBox.Value := Format("
+    ShowMarker(x, y)
+    ; 直接格式化时间
+    formattedTime := FormatTime(colorData["timestamp"], "HH:mm:ss")
+    resultBox.Value := Format("
     (
-    █ 窗口坐标：({}, {})
-    █ 颜色值：{}
-    █ 屏幕坐标：({}, {})
-    )",
-    info.x, info.y, info.color,
-    info.x + TargetWindow.clientX, info.y + TargetWindow.clientY)
+    【记录成功 - 屏幕坐标】
+    坐标：({}, {})
+    颜色值：{}
+    时间：{}
+    显示器：#{}
+    )", x, y, colorData["color"], formattedTime, colorData["monitor"])
 }
 
-; F2：对比颜色
+; 修改持续时间计算方式
 F2:: {
-    if !FirstRecord.HasProp("x") {
-        InfoBox.Value := "请先按F1记录初始颜色！"
+    if (colorData["x"] = 0) {
+        resultBox.Value := "请先按F1记录颜色！"
         return
     }
 
-    ; 获取当前颜色
-    WinGetClientPos(,, &w, &h, TargetWindow.hwnd)
-    if (FirstRecord.x > w || FirstRecord.y > h) {
-        InfoBox.Value := "目标坐标超出当前窗口范围！"
+    currentMonitor := GetMonitorAt(colorData["x"], colorData["y"])
+    if (currentMonitor != colorData["monitor"]) {
+        resultBox.Value := "警告：目标点已不在原显示器！#" currentMonitor
         return
     }
 
-    ; 计算实际屏幕坐标
-    absX := TargetWindow.clientX + FirstRecord.x
-    absY := TargetWindow.clientY + FirstRecord.y
+    currentColor := PixelGetColor(colorData["x"], colorData["y"])
+    ShowMarker(colorData["x"], colorData["y"])
 
-    ; 获取颜色
-    currentColor := "0x" StrReplace(PixelGetColor(absX, absY, "RGB"), "0x")
-
-    ; 生成报告
-    report := Format("
+    ; 计算持续时间（秒）
+    duration := (A_Now - colorData["timestamp"]) * 86400  ; 转换天数为秒
+    resultBox.Value := Format("
     (
-    █ 目标位置：({}, {}) in window
-    █ 首次颜色：{}
-    █ 当前颜色：{}
-    █ 对比结果：{}
+    【对比结果 - 屏幕坐标】
+    目标坐标：({}, {})
+    原始颜色：{}
+    当前颜色：{}
+    状态：{}
+    已持续：{}秒
     )",
-    FirstRecord.x, FirstRecord.y,
-    FirstRecord.color, currentColor,
-    (FirstRecord.color == currentColor) ? "相同 ✅" : "不同 ❌")
-
-    InfoBox.Value := report
+    colorData["x"], colorData["y"],
+    colorData["color"], currentColor,
+    (colorData["color"] = currentColor) ? "✅匹配" : "❌变化",
+    duration)
 }
 
-F5::ExitApp
+F5:: ExitApp
