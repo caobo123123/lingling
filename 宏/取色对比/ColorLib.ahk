@@ -1,4 +1,4 @@
-; color_ops.ahk
+; ColorLib.ahk
 class ColorComparator {
     static lastPos := {x: 0, y: 0}
     static firstColor := ""
